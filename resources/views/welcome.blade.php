@@ -1,4 +1,7 @@
 <x-layouts.public>
+    {{-- Title --}}
+    <x-slot name="title">Welcome</x-slot>
+
     <!-- Include Fixed Navbar -->
     <x-public.navbar />
 
@@ -39,129 +42,129 @@
             </div>
         </div>
     </div>    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-50 dark:bg-zinc-900">
+    <section id="features" class="py-20 section-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
                     Everything you need to succeed
                 </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl text-secondary max-w-3xl mx-auto">
                     Our platform provides all the tools and features you need to build, launch, and scale your SaaS business.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-blue mb-4">
+                        <svg class="w-6 h-6 icon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Lightning Fast</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Built with performance in mind. Deploy your applications with blazing fast speed and optimal performance.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Lightning Fast</h3>
+                    <p class="text-secondary">Built with performance in mind. Deploy your applications with blazing fast speed and optimal performance.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-green mb-4">
+                        <svg class="w-6 h-6 icon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Secure & Reliable</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Enterprise-grade security with 99.9% uptime guarantee. Your data is safe and always accessible.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Secure & Reliable</h3>
+                    <p class="text-secondary">Enterprise-grade security with 99.9% uptime guarantee. Your data is safe and always accessible.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-purple mb-4">
+                        <svg class="w-6 h-6 icon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M13 13h4a2 2 0 012 2v4a2 2 0 01-2 2h-4"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Easy Customization</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Fully customizable components and themes. Build your unique brand experience effortlessly.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Easy Customization</h3>
+                    <p class="text-secondary">Fully customizable components and themes. Build your unique brand experience effortlessly.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-orange mb-4">
+                        <svg class="w-6 h-6 icon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Analytics & Insights</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Comprehensive analytics dashboard to track your growth and make data-driven decisions.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Analytics & Insights</h3>
+                    <p class="text-secondary">Comprehensive analytics dashboard to track your growth and make data-driven decisions.</p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-pink mb-4">
+                        <svg class="w-6 h-6 icon-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Team Collaboration</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Built-in team management and collaboration tools to work efficiently with your team.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">Team Collaboration</h3>
+                    <p class="text-secondary">Built-in team management and collaboration tools to work efficiently with your team.</p>
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card">
+                    <div class="icon-container-blue mb-4">
+                        <svg class="w-6 h-6 icon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">24/7 Support</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Round-the-clock support from our expert team. Get help whenever you need it.</p>
+                    <h3 class="text-xl font-semibold text-primary mb-2">24/7 Support</h3>
+                    <p class="text-secondary">Round-the-clock support from our expert team. Get help whenever you need it.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-white dark:bg-zinc-800">
+    <section id="pricing" class="py-20 bg-primary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
                     Simple, transparent pricing
                 </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl text-secondary max-w-3xl mx-auto">
                     Choose the perfect plan for your business. Upgrade or downgrade at any time.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Starter Plan -->
-                <div class="bg-gray-50 dark:bg-zinc-700 p-8 rounded-xl">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Starter</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Perfect for small teams</p>
+                <div class="bg-secondary p-8 rounded-xl border border-primary">
+                    <h3 class="text-xl font-semibold text-primary mb-2">Starter</h3>
+                    <p class="text-secondary mb-4">Perfect for small teams</p>
                     <div class="mb-6">
-                        <span class="text-3xl font-bold text-gray-900 dark:text-white">$29</span>
-                        <span class="text-gray-600 dark:text-gray-300">/month</span>
+                        <span class="text-3xl font-bold text-primary">$29</span>
+                        <span class="text-secondary">/month</span>
                     </div>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <li class="flex items-center text-secondary">
+                            <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Up to 5 users
                         </li>
-                        <li class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <li class="flex items-center text-secondary">
+                            <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             10GB storage
                         </li>
-                        <li class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <li class="flex items-center text-secondary">
+                            <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Email support
                         </li>
                     </ul>
-                    <a href="#" class="w-full bg-gray-200 dark:bg-zinc-600 text-gray-900 dark:text-white py-3 px-4 rounded-lg font-medium text-center block hover:bg-gray-300 dark:hover:bg-zinc-500 transition-colors">
+                    <a href="#" class="w-full btn-secondary py-3 px-4 rounded-lg font-medium text-center block">
                         Get Started
                     </a>
                 </div>

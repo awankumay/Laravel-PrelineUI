@@ -48,7 +48,7 @@
             <div class="flex items-center gap-x-2">
                 <!-- Dark Mode Toggle -->
                 <button type="button"
-                    class="hs-dark-mode-active:hidden size-8 flex justify-center items-center text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                    class="theme-toggle-dark"
                     data-hs-theme-click-value="dark"
                     title="Switch to dark mode">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -59,7 +59,7 @@
                 </button>
 
                 <button type="button"
-                    class="hs-light-mode-active:hidden size-8 flex justify-center items-center text-sm font-semibold rounded-lg border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:bg-neutral-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                    class="theme-toggle-light hidden"
                     data-hs-theme-click-value="light"
                     title="Switch to light mode">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

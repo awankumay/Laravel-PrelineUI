@@ -14,3 +14,266 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/* ===================================
+   Custom Dark Mode Configuration
+   =================================== */
+
+/* Override dark variant to use class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===================================
+   Reusable Dark Mode Custom Classes
+   =================================== */
+
+/* Background Colors */
+.bg-primary {
+    background-color: white;
+}
+
+.dark .bg-primary {
+    background-color: rgb(23 23 23); /* neutral-900 */
+}
+
+.bg-secondary {
+    background-color: rgb(249 250 251); /* gray-50 */
+}
+
+.dark .bg-secondary {
+    background-color: rgb(38 38 38); /* neutral-800 */
+}
+
+/* Text Colors */
+.text-primary {
+    color: rgb(17 24 39); /* gray-900 */
+}
+
+.dark .text-primary {
+    color: white;
+}
+
+.text-secondary {
+    color: rgb(75 85 99); /* gray-600 */
+}
+
+.dark .text-secondary {
+    color: rgb(209 213 219); /* gray-300 */
+}
+
+.text-muted {
+    color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-muted {
+    color: rgb(156 163 175); /* gray-400 */
+}
+
+/* Border Colors */
+.border-primary {
+    border-color: rgb(229 231 235); /* gray-200 */
+}
+
+.dark .border-primary {
+    border-color: rgb(64 64 64); /* neutral-700 */
+}
+
+/* Feature Card - for marketing pages */
+.feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.dark .feature-card {
+    background-color: rgb(38 38 38); /* neutral-800 */
+}
+
+.feature-card:hover {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Icon Container */
+.icon-container-blue {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(219 234 254); /* blue-100 */
+}
+
+.dark .icon-container-blue {
+    background-color: rgb(30 58 138); /* blue-900 */
+}
+
+.icon-container-green {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(220 252 231); /* green-100 */
+}
+
+.dark .icon-container-green {
+    background-color: rgb(20 83 45); /* green-900 */
+}
+
+.icon-container-purple {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(243 232 255); /* purple-100 */
+}
+
+.dark .icon-container-purple {
+    background-color: rgb(88 28 135); /* purple-900 */
+}
+
+.icon-container-pink {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(252 231 243); /* pink-100 */
+}
+
+.dark .icon-container-pink {
+    background-color: rgb(131 24 67); /* pink-900 */
+}
+
+.icon-container-orange {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255 237 213); /* orange-100 */
+}
+
+.dark .icon-container-orange {
+    background-color: rgb(124 45 18); /* orange-900 */
+}
+
+/* Icon Colors */
+.icon-blue {
+    color: rgb(37 99 235); /* blue-600 */
+}
+
+.dark .icon-blue {
+    color: rgb(96 165 250); /* blue-400 */
+}
+
+.icon-green {
+    color: rgb(22 163 74); /* green-600 */
+}
+
+.dark .icon-green {
+    color: rgb(74 222 128); /* green-400 */
+}
+
+.icon-purple {
+    color: rgb(147 51 234); /* purple-600 */
+}
+
+.dark .icon-purple {
+    color: rgb(192 132 252); /* purple-400 */
+}
+
+.icon-pink {
+    color: rgb(219 39 119); /* pink-600 */
+}
+
+.dark .icon-pink {
+    color: rgb(244 114 182); /* pink-400 */
+}
+
+.icon-orange {
+    color: rgb(234 88 12); /* orange-600 */
+}
+
+.dark .icon-orange {
+    color: rgb(251 146 60); /* orange-400 */
+}
+
+/* Theme Toggle Button Classes */
+.theme-toggle-light,
+.theme-toggle-dark {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    border-color: rgb(229 231 235); /* gray-200 */
+    background-color: white;
+    color: rgb(17 24 39); /* gray-900 */
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark .theme-toggle-light,
+.dark .theme-toggle-dark {
+    border-color: rgb(64 64 64); /* neutral-700 */
+    background-color: rgb(38 38 38); /* neutral-800 */
+    color: white;
+}
+
+.theme-toggle-light:hover,
+.theme-toggle-dark:hover {
+    background-color: rgb(249 250 251); /* gray-50 */
+}
+
+.dark .theme-toggle-light:hover,
+.dark .theme-toggle-dark:hover {
+    background-color: rgb(64 64 64); /* neutral-700 */
+}
+
+.theme-toggle-light:focus,
+.theme-toggle-dark:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgb(59 130 246); /* blue-500 */
+}
+
+/* Section Background */
+.section-bg {
+    background-color: rgb(249 250 251); /* gray-50 */
+}
+
+.dark .section-bg {
+    background-color: rgb(23 23 23); /* neutral-900 */
+}
+
+/* Button Variants */
+.btn-secondary {
+    background-color: rgb(249 250 251); /* gray-50 */
+    color: rgb(17 24 39); /* gray-900 */
+    transition: background-color 0.3s;
+}
+
+.dark .btn-secondary {
+    background-color: rgb(38 38 38); /* neutral-800 */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: rgb(229 231 235); /* gray-200 */
+}
+
+.dark .btn-secondary:hover {
+    background-color: rgb(64 64 64); /* neutral-700 */
+}
+

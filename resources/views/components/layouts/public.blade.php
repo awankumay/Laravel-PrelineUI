@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
 
 <head>
     @include('partials.head')
 </head>
 
-<body>
+<body class="bg-primary text-primary">
     {{ $slot }}
 </body>
 </html>
