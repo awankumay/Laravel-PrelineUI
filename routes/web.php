@@ -1,4 +1,5 @@
 <?php
+
 use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,27 @@ Route::get('/admin', function () {
 
 Route::get('/counter', Livewire\Counter::class);
 
-// Test routes for error pages (remove in production)
-if (app()->environment(['local', 'testing'])) {
-    Route::get('/test-error/{code}', function ($code) {
-        abort($code);
-    })->where('code', '[0-9]+');
-}
+// Authentication Layout Examples
+Route::get('/login-simple', function () {
+    return view('auth.login-simple');
+})->name('login.simple');
+
+Route::get('/login-card', function () {
+    return view('auth.login-card');
+})->name('login.card');
+
+Route::get('/login-split', function () {
+    return view('auth.login-split');
+})->name('login.split');
+
+Route::get('/login-split-dark', function () {
+    return view('auth.login-split-dark');
+})->name('login.split.dark');
+
+Route::get('/login-split-gradient', function () {
+    return view('auth.login-split-gradient');
+})->name('login.split.gradient');
+
+Route::get('/login-split-image', function () {
+    return view('auth.login-split-image');
+})->name('login.split.image');

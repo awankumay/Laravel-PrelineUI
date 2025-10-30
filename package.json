@@ -16,7 +16,6 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
-        "@preline/theme-switch": "^3.2.3",
         "preline": "^3.2.3",
         "vite-plugin-clean": "^2.0.1"
     }

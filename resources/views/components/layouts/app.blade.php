@@ -1,3 +1,3 @@
-<x-admin.default :title="$title ?? null">
+<x-layouts.admin.default :title="$title ?? null">
     {{ $slot }}
-</x-admin.default>
+</x-layouts.admin.default>

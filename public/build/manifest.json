@@ -1,0 +1,31 @@
+{
+  "_@floating-ui.js": {
+    "file": "assets/@floating-ui.js",
+    "name": "@floating-ui"
+  },
+  "_preline.js": {
+    "file": "assets/preline.js",
+    "name": "preline",
+    "imports": [
+      "_@floating-ui.js"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app2.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_preline.js",
+      "_@floating-ui.js"
+    ]
+  }
+}

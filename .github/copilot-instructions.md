@@ -1,11 +1,14 @@
 <laravel-boost-guidelines>
+=== foundation rules ===
+
 # Laravel Boost Guidelines
 
 The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to enhance the user's satisfaction building Laravel applications.
 
 ## Foundational Context
-This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
+This application is a **Laravel 12 + Preline UI + Tailwind CSS v4** project designed for building SaaS applications with a focus on beautiful UI components and dark mode support.
 
+Main Laravel ecosystem packages & versions:
 - php - 8.3.16
 - laravel/framework (LARAVEL) - v12
 - laravel/prompts (PROMPTS) - v0
@@ -16,6 +19,8 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - pestphp/pest (PEST) - v4
 - phpunit/phpunit (PHPUNIT) - v12
 - tailwindcss (TAILWINDCSS) - v4
+- tailwindcss/forms - v0.5.10
+- **preline** (PRELINE UI) - v3.2.3
 
 ## Conventions
 - You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, naming.
@@ -38,93 +43,114 @@ This application is a Laravel application and its main Laravel ecosystems packag
 ## Documentation Files
 - You must only create documentation files if explicitly requested by the user.
 
-# Laravel Preline UI Application - Copilot Instructions
 
-## Project Overview
-This is a Laravel 12 application with Preline UI components and Tailwind CSS 4. It's structured as a SaaS platform with public marketing pages and admin dashboard areas.
+=== preline-ui rules ===
 
-## Key Architecture Decisions
+## Preline UI Integration
 
-### Frontend Stack
-- **Preline UI**: Pre-built Tailwind components imported via `import 'preline'` in `resources/js/app.js`
-- **Tailwind CSS 4**: Uses new `@import 'tailwindcss'` syntax (not v3 `@tailwind` directives)
-- **Vite**: Build tool with Laravel Vite plugin, includes hot reloading
-- **Custom CSS**: Preline variants imported via `@import "../../node_modules/preline/variants.css"`
+This project uses **Preline UI v3** for pre-built UI components with Tailwind CSS v4. Preline is imported in `resources/js/app.js` and integrated via Vite.
 
-### Layout Architecture
-- **Dual Layout System**: 
-  - `public.blade.php` for marketing pages (welcome)
-  - `app.blade.php` for admin dashboard (wraps admin sidebar)
-- **Component Structure**: Organized in `components/{admin,public,layouts}/` with reusable partials
-- **Dark Mode**: Default set to `class="dark"` in public layout, `class="light"` in admin
+### Component Initialization
+- Preline components initialize automatically via `import 'preline'` in `app.js`
+- The import includes dropdown menus, modals, tabs, accordions, and other interactive components
+- No manual initialization required in most cases
 
-### Development Workflow Commands
-- **Development**: `composer run dev` (runs concurrent server + queue + vite)
-- **Setup**: `composer run setup` (full install + migrate + build)
-- **Testing**: `composer run test` (config clear + pest)
-- **Formatting**: `vendor/bin/pint --dirty` (Laravel Pint)
+### Component Layouts
+- **Public pages**: Use `<x-layouts.public>` layout (e.g., `welcome.blade.php`, marketing pages)
+- **Admin/dashboard**: Use `<x-admin.default>` or `<x-admin.split>` layouts for admin interfaces
+- **Livewire**: Components use standard Livewire structure with Preline-styled elements
 
-## Project-Specific Conventions
+### Blade Components
+- Reusable components in `resources/views/components/`:
+  - `public/navbar.blade.php` - Fixed navigation with theme toggle
+  - `public/footer.blade.php` - Footer for public pages
+  - `admin/header.blade.php` - Admin dashboard header
+- Check existing components in `resources/views/components/` before creating new ones
 
-### View Components
+### Styling Guidelines
+- All Preline components work seamlessly with Tailwind v4 utilities
+- Preline variants are imported via `@import "../../node_modules/preline/variants.css"` in `app.css`
+- Use custom dark mode classes (see Dark Mode section) instead of raw Tailwind for consistency
+
+
+=== dark-mode rules ===
+
+## Custom Dark Mode Implementation
+
+This project uses a **custom class-based dark mode** system without `@preline/theme-switch`. Read `docs/DARK_MODE_GUIDE.md` for complete details.
+
+### Architecture
+- **JavaScript handler**: `resources/js/app.js` contains `window.HSThemeAppearance` API
+- **Custom classes**: `resources/css/app.css` defines reusable dark mode classes
+- **FOUC prevention**: Inline script in `resources/views/partials/head.blade.php` sets theme before render
+- **Persistence**: Theme preference stored in `localStorage` as `hs_theme` (light/dark)
+
+### Theme Toggle Implementation
+- Toggle buttons use `data-hs-theme-click-value="dark"` or `data-hs-theme-click-value="light"`
+- Example in `resources/views/components/public/navbar.blade.php` (lines 23-50)
+- Buttons automatically show/hide based on active theme
+- Can place theme toggle anywhere - it will work globally
+
+### Custom Dark Mode Classes (CRITICAL)
+Always use these custom classes for consistent dark mode support:
+
+**Backgrounds:**
+- `.bg-primary` - Main background (white/neutral-900)
+- `.bg-secondary` - Secondary background (gray-50/neutral-800)
+- `.section-bg` - Section backgrounds (gray-50/neutral-900)
+
+**Text:**
+- `.text-primary` - Main text (gray-900/white)
+- `.text-secondary` - Secondary text (gray-600/gray-300)
+- `.text-muted` - Muted text (gray-500/gray-400)
+
+**Borders:**
+- `.border-primary` - Standard borders (gray-200/neutral-700)
+
+**Components:**
+- `.feature-card` - Marketing feature cards with hover effects and dark mode
+- `.icon-container-{color}` - Icon containers (blue, green, purple, orange) with dark mode
+- `.icon-{color}` - Colored icons that adapt to dark mode
+
+**Example Usage:**
 ```blade
-<!-- Use existing component structure -->
-<x-layouts.public>     <!-- Marketing pages -->
-<x-layouts.app>        <!-- Admin dashboard -->
-<x-admin.sidebar>      <!-- Admin layout wrapper -->
-<x-public.navbar>      <!-- Public navigation -->
+<div class="bg-primary">
+    <h1 class="text-primary">Title</h1>
+    <p class="text-secondary">Description text</p>
+</div>
 ```
 
-### Tailwind + Preline Integration
-- Use Preline's `data-hs-*` attributes for interactive components
-- Follow existing responsive patterns: `text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl`
-- Leverage custom variants like `@custom-variant hover (&:hover)`
+### When Creating New Components
+1. Use custom classes above for common elements
+2. For unique styles, add `dark:` variants in Tailwind (e.g., `dark:bg-neutral-800`)
+3. Test in both light and dark modes
+4. Reference `docs/DARK_MODE_GUIDE.md` for icon containers and special cases
 
-### Testing with Pest 4
-- Uses Pest 4 with Laravel plugin (`pestphp/pest: ^4.1`)
-- Test files in `tests/{Feature,Unit}/` with `.php` extension
-- Browser testing capabilities available for UI interactions
 
-### CSS Architecture
-```css
-/* Key patterns in resources/css/app.css */
-@import 'tailwindcss';                    /* v4 syntax */
-@import "../../node_modules/preline/variants.css";
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-```
+=== vite-build rules ===
 
-## Integration Points
+## Vite & Asset Building
 
-### Laravel Boost MCP Server
-- `boost.json` configured for Copilot in VS Code
-- Use Boost tools for documentation search, tinker commands, database queries
-- Guidelines reference comprehensive Laravel ecosystem patterns
+### Development Workflow
+- **Start dev server**: `composer run dev` (runs Laravel server, queue worker, and Vite concurrently)
+- **Alternative**: `npm run dev` (Vite only) or `php artisan serve` (Laravel only)
+- **Build assets**: `npm run build` or `composer run build`
 
-### Asset Pipeline
-- Vite config includes `vite-plugin-clean` for build cleanup
-- Entry points: `['resources/css/app.css', 'resources/js/app.js']`
-- Auto-refreshes on file changes during development
+### Vite Configuration
+- Config file: `vite.config.js`
+- Entry points: `resources/css/app.css`, `resources/js/app.js`
+- Plugins: Laravel plugin, Tailwind CSS v4 plugin, clean plugin
+- Hot module replacement (HMR) enabled for `.blade.php`, `.js`, `.css` files
 
-### Route Organization
-Simple structure in `routes/web.php`:
-```php
-Route::get('/', fn() => view('welcome'));      // Public marketing
-Route::get('/admin', fn() => view('admin'));   // Admin dashboard
-```
+### Troubleshooting
+- **"Vite manifest not found" error**: Run `npm run build` or start `npm run dev`
+- **Frontend changes not visible**: Ensure Vite dev server is running or rebuild assets
+- **Module not found**: Check imports in `app.js` and verify `node_modules` installation
 
-## Critical Dependencies
-- **Preline**: `^3.2.3` - UI component library
-- **Livewire**: `^3.6` - For reactive components (ready for use)
-- **Laravel Debugbar**: Available in dev environment
-- **Concurrently**: Manages parallel dev processes
-
-## Development Notes
-- Admin sidebar uses Preline's overlay system with `data-hs-overlay`
-- Font: Instrument Sans from Bunny Fonts
-- Icons: Mixed SVG patterns following Preline conventions
-- Laravel 12 structure: No `app/Console/Kernel.php`, commands auto-register
-
-When adding features, maintain the dual-layout structure and follow Preline's component patterns for consistency.
+### Asset Optimization
+- Chunks are automatically split by vendor in production builds
+- Clean plugin removes old build files before new builds
+- Entry/chunk/asset file names follow pattern: `assets/[name].[ext]`
 
 
 === boost rules ===

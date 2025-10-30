@@ -3,7 +3,7 @@
     <x-slot name="title">Welcome</x-slot>
 
     <!-- Include Fixed Navbar -->
-    <x-public.navbar />
+    <x-layouts.public.navbar />
 
     <!-- Hero Section with Full Screen - Simple Blue Background -->
     <div class="relative min-h-screen flex items-center justify-center bg-blue-600">
@@ -274,7 +274,7 @@
     </section>
 
     <!-- Include Footer Component -->
-    <x-public.footer />
+    <x-layouts.public.footer />
 
     <!-- Add custom styles -->
     <style>
