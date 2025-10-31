@@ -19,7 +19,7 @@
                     <label for="email" class="block text-sm font-medium mb-2 text-primary">Email</label>
                     <input type="email" id="email" name="email"
                         class="py-3 px-4 block w-full border border-primary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary"
-                        placeholder="name@company.com" required>
+                        placeholder="name@example.com" required>
                 </div>
 
                 <!-- Password -->
@@ -49,12 +49,13 @@
 
                 <!-- Divider -->
                 <div
-                    class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-primary before:me-6 after:flex-1 after:border-t after:border-primary after:ms-6 dark:text-neutral-500">
+                    class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-primary before:me-6 after:flex-1 after:border-t after:border-primary after:ms-6 dark:text-neutral-500"
+                    hidden>
                     Or
                 </div>
 
                 <!-- Social Login -->
-                <div class="space-y-3">
+                <div class="space-y-3" hidden>
                     <button type="button"
                         class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-primary bg-primary text-primary shadow-sm hover:bg-secondary focus:outline-hidden focus:bg-secondary disabled:opacity-50 disabled:pointer-events-none">
                         <svg class="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">

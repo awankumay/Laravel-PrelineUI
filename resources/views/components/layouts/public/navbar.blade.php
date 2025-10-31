@@ -1,5 +1,5 @@
 <!-- Fixed Navbar with Blue Theme -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-blue-600/20 backdrop-blur-sm">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-blue-600/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-6">
             <div class="flex items-center">
@@ -21,35 +21,7 @@
 
                 <!-- Dark Mode Toggle -->
                 <div class="hidden sm:flex items-center gap-2">
-                    <button type="button"
-                        class="size-9 flex justify-center items-center text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-                        data-hs-theme-click-value="dark"
-                        title="Switch to dark mode">
-                        <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                        </svg>
-                    </button>
-
-                    <button type="button"
-                        class="size-9 flex justify-center items-center text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors hidden"
-                        data-hs-theme-click-value="light"
-                        title="Switch to light mode">
-                        <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="4"></circle>
-                            <path d="M12 2v2"></path>
-                            <path d="M12 20v2"></path>
-                            <path d="m4.93 4.93 1.41 1.41"></path>
-                            <path d="m17.66 17.66 1.41 1.41"></path>
-                            <path d="M2 12h2"></path>
-                            <path d="M20 12h2"></path>
-                            <path d="m6.34 17.66-1.41 1.41"></path>
-                            <path d="m19.07 4.93-1.41 1.41"></path>
-                        </svg>
-                    </button>
+                    @include('partials.theme-switch')
                 </div>
                 <!-- End Dark Mode Toggle -->
 
@@ -89,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (scrolled) {
             // Scrolled state - solid blue background
-            navbar.classList.remove('bg-blue-600/20', 'backdrop-blur-sm');
+            navbar.classList.remove('bg-blue-600/20');
             navbar.classList.add('bg-blue-600', 'shadow-lg', 'backdrop-blur-md');
 
             // Keep white text for better contrast on blue
@@ -100,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } else {
             // Top state - semi-transparent blue
-            navbar.classList.add('bg-blue-600/20', 'backdrop-blur-sm');
+            navbar.classList.add('bg-blue-600/20');
             navbar.classList.remove('bg-blue-600', 'shadow-lg', 'backdrop-blur-md');
 
             navbarBrand.classList.add('text-white');

@@ -13,6 +13,16 @@
 @source '../**/*.js';
 
 /* ===================================
+   Shared Styles (Used by all layouts)
+   =================================== */
+@import './shared-responsive.css';
+
+/* ===================================
+   Debug Tools (Development only)
+   =================================== */
+@import './debug-responsive.css';
+
+/* ===================================
    Custom Dark Mode Configuration
    =================================== */
 

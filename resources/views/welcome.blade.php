@@ -41,7 +41,8 @@
                 </div>
             </div>
         </div>
-    </div>    <!-- Features Section -->
+    </div>
+    <!-- Features Section -->
     <section id="features" class="py-20 section-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
