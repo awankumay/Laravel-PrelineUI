@@ -16,14 +16,12 @@
                 <button type="button"
                     class="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-hidden focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-application-sidebar"
-                    aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar">
+                    aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar"
+                    data-hs-overlay-minifier="#hs-application-sidebar">
                     <span class="sr-only">Toggle Navigation</span>
-                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <rect width="18" height="18" x="3" y="3" rx="2" />
-                        <path d="M15 3v18" />
-                        <path d="m8 9 3 3-3 3" /></svg>
+
+                    <x-heroicon-m-chevron-double-left class="hidden lg:hs-overlay-minified:block shrink-0 size-4" />
+                    <x-heroicon-m-chevron-double-right class="block lg:hs-overlay-minified:hidden shrink-0 size-4" />
                 </button>
                 <!-- End Navigation Toggle -->
 
@@ -66,7 +64,7 @@
     dark:bg-neutral-800 dark:border-neutral-700" role="dialog" tabindex="-1" aria-label="Sidebar">
         <div class="relative flex flex-col h-full max-h-full">
             <!-- Sidebar Header -->
-            <header class="p-4 flex justify-between items-center gap-x-2 hid">
+            <header class="p-4 flex justify-between items-center gap-x-2">
                 <!-- Logo -->
                 <a class="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80"
                     href="#" aria-label="Preline">
@@ -85,8 +83,16 @@
                     </svg>
                 </a>
                 <!-- End Logo -->
+                <!-- Close Button (Mobile Only) -->
+                <button type="button"
+                    class="lg:hidden size-8 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                    aria-label="Close sidebar" data-hs-overlay="#hs-application-sidebar">
+                    <span class="sr-only">Close sidebar</span>
+                    <x-heroicon-o-x-mark class="shrink-0 size-4" />
+                </button>
+                <!-- End Logo -->
                 <div class="hidden lg:block ms-2">
-
+                    {{-- Dummy --}}
                 </div>
             </header>
             <!-- End Sidebar Header -->
@@ -103,7 +109,7 @@
                             <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200 {{ request()->is(ltrim($menuItem['url'], '/')) ? 'bg-gray-100 dark:bg-neutral-700' : '' }}"
                                 href="{{ $menuItem['url'] }}">
                                 @if(isset($menuItem['icon']))
-                                <i class="{{ $menuItem['icon'] }} w-4"></i>
+                                @svg($menuItem['icon'], 'w-4 h-4 shrink-0')
                                 @endif
                                 {{ $menuItem['text'] }}
                                 @if(isset($menuItem['badge']))
@@ -121,7 +127,7 @@
                                 class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200"
                                 aria-expanded="false" aria-controls="menu-accordion-collapse-{{ $index }}">
                                 @if(isset($menuItem['icon']))
-                                <i class="{{ $menuItem['icon'] }} w-4"></i>
+                                @svg($menuItem['icon'], 'w-4 h-4 shrink-0')
                                 @endif
                                 {{ $menuItem['text'] }}
                                 <x-heroicon-s-chevron-up
@@ -237,7 +243,7 @@
     <!-- End Sidebar -->
 
     <!-- Content -->
-    <main class="w-full">
+    <main class="w-full text-gray-800 dark:text-neutral-200">
         <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
             {{ $slot }}
         </div>

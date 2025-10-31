@@ -5,12 +5,12 @@ return [
         [
             'text' => 'Dashboard',
             'url' => '#',
-            'icon' => 'fa-solid fa-house',
+            'icon' => 'heroicon-o-home',
             'type' => 'link',
         ],
         [
             'text' => 'Users',
-            'icon' => 'fa-solid fa-users',
+            'icon' => 'heroicon-o-users',
             'type' => 'accordion',
             'submenu' => [
                 [
@@ -34,7 +34,7 @@ return [
         ],
         [
             'text' => 'Account',
-            'icon' => 'fa-solid fa-user-gear',
+            'icon' => 'heroicon-o-user-circle',
             'type' => 'accordion',
             'submenu' => [
                 ['text' => 'Profile', 'url' => '#', 'type' => 'link'],
@@ -44,7 +44,7 @@ return [
         ],
         [
             'text' => 'Projects',
-            'icon' => 'fa-solid fa-folder',
+            'icon' => 'heroicon-o-folder',
             'type' => 'accordion',
             'submenu' => [
                 ['text' => 'All Projects', 'url' => '#', 'type' => 'link'],
@@ -55,14 +55,14 @@ return [
         [
             'text' => 'Calendar',
             'url' => '#',
-            'icon' => 'fa-solid fa-calendar-days',
+            'icon' => 'heroicon-o-calendar',
             'type' => 'link',
             'badge' => 'New',
         ],
         [
             'text' => 'Documentation',
             'url' => '#',
-            'icon' => 'fa-solid fa-book',
+            'icon' => 'heroicon-o-book-open',
             'type' => 'link',
         ],
     ],
