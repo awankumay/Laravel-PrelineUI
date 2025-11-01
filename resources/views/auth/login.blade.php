@@ -7,12 +7,13 @@
             <h1 class="text-3xl font-bold text-primary mb-2">Welcome back</h1>
             <p class="text-secondary">
                 Don't have an account?
-                <a href="#" class="text-blue-600 hover:underline font-medium dark:text-blue-500">Sign up</a>.
+                <a href="/register" class="text-blue-600 hover:underline font-medium dark:text-blue-500">Sign up</a>.
             </p>
         </div>
 
         <!-- Form -->
-        <form>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
             <div class="space-y-4">
                 <!-- Email -->
                 <div>
@@ -26,7 +27,7 @@
                 <div>
                     <div class="flex justify-between items-center mb-2">
                         <label for="password" class="block text-sm font-medium text-primary">Password</label>
-                        <a href="#" class="text-sm text-blue-600 hover:underline font-medium dark:text-blue-500">Forgot
+                        <a href="{{ route('password.request') }}" class="text-sm text-blue-600 hover:underline font-medium dark:text-blue-500">Forgot
                             password?</a>
                     </div>
                     <input type="password" id="password" name="password"
@@ -44,7 +45,7 @@
                 <!-- Submit Button -->
                 <button type="submit"
                     class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                    Sign in to your account
+                    Sign in
                 </button>
 
                 <!-- Divider -->

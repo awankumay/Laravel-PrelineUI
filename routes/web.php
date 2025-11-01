@@ -4,7 +4,7 @@ use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/admin', function () {
@@ -19,4 +19,11 @@ Route::get('/test', function () {
 
 Route::get('/dark', function () {
     return view('dark');
+});
+
+// Middleware Protected Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    })->name('welcome');
 });
