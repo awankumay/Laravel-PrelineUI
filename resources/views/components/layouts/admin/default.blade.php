@@ -19,9 +19,8 @@
                     aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar"
                     data-hs-overlay-minifier="#hs-application-sidebar">
                     <span class="sr-only">Toggle Navigation</span>
-
-                    <x-heroicon-m-chevron-double-left class="hidden lg:hs-overlay-minified:block shrink-0 size-4" />
-                    <x-heroicon-m-chevron-double-right class="block lg:hs-overlay-minified:hidden shrink-0 size-4" />
+                    @svg('heroicon-m-chevron-double-left', 'hidden lg:hs-overlay-minified:block shrink-0 size-4')
+                    @svg('heroicon-m-chevron-double-right', 'block lg:hs-overlay-minified:hidden shrink-0 size-4')
                 </button>
                 <!-- End Navigation Toggle -->
 
@@ -29,11 +28,7 @@
                 <ol class="ms-3 flex items-center whitespace-nowrap">
                     <li class="flex items-center text-sm text-gray-800 dark:text-neutral-400">
                         {{ $menu ?? 'Select Menu' }}
-                        <svg class="shrink-0 mx-3 overflow-visible size-2.5 text-gray-400 dark:text-neutral-500"
-                            width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1L10.6869 7.16086C10.8637 7.35239 10.8637 7.64761 10.6869 7.83914L5 14"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
+                        @svg('heroicon-s-chevron-right', 'shrink-0 mx-2 overflow-visible size-4 text-gray-400 dark:text-neutral-500')
                     </li>
                     <li class="text-sm font-semibold text-gray-800 truncate dark:text-neutral-400" aria-current="page">
                         {{ $title ?? 'Sub Menu' }}
@@ -88,7 +83,7 @@
                     class="lg:hidden size-8 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                     aria-label="Close sidebar" data-hs-overlay="#hs-application-sidebar">
                     <span class="sr-only">Close sidebar</span>
-                    <x-heroicon-o-x-mark class="shrink-0 size-4" />
+                    @svg('heroicon-o-x-mark', 'shrink-0 size-4')
                 </button>
                 <!-- End Logo -->
                 <div class="hidden lg:block ms-2">
@@ -130,10 +125,8 @@
                                 @svg($menuItem['icon'], 'w-4 h-4 shrink-0')
                                 @endif
                                 {{ $menuItem['text'] }}
-                                <x-heroicon-s-chevron-up
-                                    class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" />
-                                <x-heroicon-s-chevron-down
-                                    class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" />
+                                @svg('heroicon-s-chevron-up', 'hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400')
+                                @svg('heroicon-s-chevron-down', 'hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400')
                             </button>
 
                             <div id="menu-accordion-collapse-{{ $index }}"
@@ -156,11 +149,8 @@
                                             aria-expanded="false"
                                             aria-controls="menu-accordion-collapse-{{ $index }}-{{ $subIndex }}">
                                             {{ $subItem['text'] }}
-
-                                            <x-heroicon-s-chevron-up
-                                                class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" />
-                                            <x-heroicon-s-chevron-down
-                                                class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" />
+                                            @svg('heroicon-s-chevron-up', 'hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400')
+                                            @svg('heroicon-s-chevron-down', 'hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400')
                                         </button>
 
                                         <div id="menu-accordion-collapse-{{ $index }}-{{ $subIndex }}"
@@ -203,13 +193,8 @@
                             src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Avatar">
                         Mia Hudson
-                        <svg class="shrink-0 size-3.5 ms-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m7 15 5 5 5-5" />
-                            <path d="m7 9 5-5 5 5" /></svg>
+                        @svg('heroicon-c-chevron-up-down', 'shrink-0 size-3.5 ms-auto')
                     </button>
-
                     <!-- Account Dropdown -->
                     <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-20 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-neutral-900 dark:border-neutral-700"
                         role="menu" aria-orientation="vertical"

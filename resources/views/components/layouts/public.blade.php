@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="bg-primary text-primary">
+<body class="text-primary">
     {{ $slot }}
 </body>
 </html>

@@ -2,7 +2,7 @@
     {{-- Title --}}
     <x-slot name="title">Login</x-slot>
 
-    <div class="bg-white rounded-2xl shadow-xl p-8 dark:bg-neutral-900">
+    <div class="bg-white rounded-2xl shadow-xl p-8 dark:bg-white/10">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-primary mb-2">Welcome back</h1>
             <p class="text-secondary">

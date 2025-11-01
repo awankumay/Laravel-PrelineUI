@@ -6,7 +6,7 @@
     <x-layouts.public.navbar />
 
     <!-- Hero Section with Full Screen - Simple Blue Background -->
-    <div class="relative min-h-screen flex items-center justify-center bg-blue-600">
+    <div class="relative min-h-screen flex items-center justify-center bg-blue-600 dark:bg-blue-900 overflow-hidden">
         <!-- Hero Content - Full Screen Centered -->
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center">
@@ -255,7 +255,7 @@
     </section>
 
     <!-- CTA Section - Simple Blue Background -->
-    <section class="py-20 bg-blue-600">
+    <section class="py-20 bg-blue-600 dark:bg-blue-900">
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
                 Ready to get started?

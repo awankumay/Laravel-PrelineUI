@@ -65,5 +65,11 @@ return [
             'icon' => 'heroicon-o-book-open',
             'type' => 'link',
         ],
+        [
+            'text' => 'Example',
+            'url' => '#',
+            'icon' => 'heroicon-o-book-open',
+            'type' => 'link',
+        ],
     ],
 ];
