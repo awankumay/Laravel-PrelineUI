@@ -23,12 +23,13 @@
 
             <!-- Right Side - Illustration/Image -->
             <div class="max-lg:mt-8 hidden lg:block">
-                <img src="https://readymadeui.com/login-image.webp"
-                    class="w-full aspect-71/50 max-lg:w-4/5 mx-auto block object-cover rounded-2xl"
+                <img src="{{ asset('assets/images/banner-auth.png') }}"
+                    class="w-full mx-auto block object-cover rounded-2xl"
                     alt="Login illustration" />
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

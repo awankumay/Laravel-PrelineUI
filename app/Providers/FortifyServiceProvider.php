@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
 
@@ -47,113 +46,37 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // Secure password reset handling
-        $this->configurePasswordReset();
-
-        // register
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-
-        // login
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
-        // forgot
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.forgot-password');
-        });
-
-        // reset
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password', ['request' => $request]);
-        });
-    }
-
-    /**
-     * Configure secure password reset handling.
-     */
-    protected function configurePasswordReset(): void
-    {
-        // Add rate limiting for password reset requests
+        // Configure rate limiting for password reset
         RateLimiter::for('password-reset', function (Request $request) {
             $throttleKey = Str::lower($request->input('email')).'|'.$request->ip();
 
             return Limit::perMinute(3)->by($throttleKey);
         });
 
-        // Custom exception handler for password reset
-        $this->app->singleton(\Laravel\Fortify\Http\Controllers\PasswordResetLinkController::class, function ($app) {
-            return new class($app)
-            {
-                protected $app;
+        // Register custom controllers for password reset functionality
+        $this->app->singleton(\Laravel\Fortify\Http\Controllers\PasswordResetLinkController::class, function () {
+            return new \App\Http\Controllers\Auth\CustomPasswordResetLinkController;
+        });
 
-                public function __construct($app)
-                {
-                    $this->app = $app;
-                }
+        $this->app->singleton(\Laravel\Fortify\Http\Controllers\NewPasswordController::class, function () {
+            return new \App\Http\Controllers\Auth\CustomNewPasswordController;
+        });
 
-                /**
-                 * Show the reset password link request view.
-                 */
-                public function create(Request $request)
-                {
-                    return app(\Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse::class);
-                }
+        // Register views
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
 
-                /**
-                 * Handle incoming password reset link request with security.
-                 */
-                public function store(Request $request)
-                {
-                    // Validate input
-                    $request->validate([
-                        'email' => ['required', 'email'],
-                    ]);
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
 
-                    // Check rate limiting
-                    $throttleKey = Str::lower($request->input('email')).'|'.$request->ip();
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('auth.forgot-password');
+        });
 
-                    if (RateLimiter::tooManyAttempts($throttleKey, 3)) {
-                        $seconds = RateLimiter::availableIn($throttleKey);
-
-                        throw ValidationException::withMessages([
-                            'email' => trans('auth.throttle', [
-                                'seconds' => $seconds,
-                                'minutes' => ceil($seconds / 60),
-                            ]),
-                        ]);
-                    }
-
-                    RateLimiter::hit($throttleKey, 60);
-
-                    try {
-                        $status = Password::sendResetLink($request->only('email'));
-
-                        // Log different scenarios for internal monitoring
-                        // But NEVER expose these to the user for security reasons
-                        if ($status !== Password::RESET_LINK_SENT) {
-                            \Log::warning('User Not Found : ', [
-                                'email' => $request->input('email'),
-                                'status' => $status,
-                                'ip' => $request->ip(),
-                            ]);
-                        }
-                    } catch (\Exception $e) {
-                        // Catch SMTP/Mail sending errors
-                        \Log::error('SMTP Error :', [
-                            'email' => $request->input('email'),
-                            'error' => $e->getMessage(),
-                            'ip' => $request->ip(),
-                        ]);
-                    }
-
-                    // SECURITY: Always return the same success message
-                    // This prevents email enumeration attacks
-                    return back()->with('status', __('We have emailed your password reset link!'));
-                }
-            };
+        Fortify::resetPasswordView(function ($request) {
+            return view('auth.reset-password', ['request' => $request]);
         });
     }
 }

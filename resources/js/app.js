@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!navbar) return;
 
-    const navbarBrand = navbar.querySelector('.navbar-brand');
-    const navbarLinks = navbar.querySelectorAll('.navbar-link');
     const mobileMenuButton = navbar.querySelector('.navbar-burger');
     const mobileMenu = navbar.querySelector('.navbar-menu');
 
@@ -18,22 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrolled = window.scrollY > 50;
 
         if (scrolled) {
-            navbar.classList.add('bg-blue-600', 'dark:bg-blue-900', 'shadow-lg');
-
-            if (navbarBrand) navbarBrand.classList.add('text-white');
-
-            navbarLinks.forEach(link => {
-                link.classList.add('text-white/90', 'hover:text-white');
-            });
+            navbar.classList.add('shadow-lg');
         } else {
-            navbar.classList.add('bg-blue-600', 'dark:bg-blue-900');
-            navbar.classList.remove('bg-blue-600', 'dark:bg-blue-900', 'shadow-lg');
-
-            if (navbarBrand) navbarBrand.classList.add('text-white');
-
-            navbarLinks.forEach(link => {
-                link.classList.add('text-white/90', 'hover:text-white');
-            });
+            navbar.classList.remove('shadow-lg');
         }
     }
 

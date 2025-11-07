@@ -7,5 +7,8 @@
 
 <body class="text-primary">
     {{ $slot }}
+
+    <!-- Cookie Consent -->
+    @include('cookie-consent::index')
 </body>
 </html>

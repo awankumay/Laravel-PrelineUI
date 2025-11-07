@@ -234,6 +234,9 @@
         </div>
     </main>
     <!-- End Content -->
+
+    <!-- Cookie Consent -->
+    @include('cookie-consent::index')
 </body>
 
 </html>

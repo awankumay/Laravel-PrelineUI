@@ -138,14 +138,14 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Starter Plan -->
-                <div class="bg-secondary p-8 rounded-xl border border-primary">
+                <div class="bg-secondary p-8 rounded-xl border border-primary flex flex-col">
                     <h3 class="text-xl font-semibold text-primary mb-2">Starter</h3>
                     <p class="text-secondary mb-4">Perfect for small teams</p>
                     <div class="mb-6">
                         <span class="text-3xl font-bold text-primary">$29</span>
                         <span class="text-secondary">/month</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 grow">
                         <li class="flex items-center text-secondary">
                             <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -165,13 +165,13 @@
                             Email support
                         </li>
                     </ul>
-                    <a href="#" class="w-full btn-secondary py-3 px-4 rounded-lg font-medium text-center block">
+                    <a href="#" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-center block mt-auto">
                         Get Started
                     </a>
                 </div>
 
                 <!-- Professional Plan (Featured) -->
-                <div class="bg-blue-600 p-8 rounded-xl text-white relative">
+                <div class="bg-blue-600 p-8 rounded-xl text-white relative flex flex-col">
                     <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
                         <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
                     </div>
@@ -181,7 +181,7 @@
                         <span class="text-3xl font-bold">$99</span>
                         <span class="text-blue-100">/month</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 grow">
                         <li class="flex items-center">
                             <svg class="w-5 h-5 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -207,20 +207,20 @@
                             Advanced analytics
                         </li>
                     </ul>
-                    <a href="#" class="w-full bg-white text-blue-600 py-3 px-4 rounded-lg font-medium text-center block hover:bg-gray-100 transition-colors">
+                    <a href="#" class="w-full bg-white text-blue-600 py-3 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center block mt-auto">
                         Get Started
                     </a>
                 </div>
 
                 <!-- Enterprise Plan -->
-                <div class="bg-gray-50 dark:bg-zinc-700 p-8 rounded-xl">
+                <div class="bg-gray-50 dark:bg-zinc-700 p-8 rounded-xl flex flex-col">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Enterprise</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-4">For large organizations</p>
                     <div class="mb-6">
                         <span class="text-3xl font-bold text-gray-900 dark:text-white">$299</span>
                         <span class="text-gray-600 dark:text-gray-300">/month</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 grow">
                         <li class="flex items-center text-gray-600 dark:text-gray-300">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -246,7 +246,7 @@
                             Custom integrations
                         </li>
                     </ul>
-                    <a href="#" class="w-full bg-gray-200 dark:bg-zinc-600 text-gray-900 dark:text-white py-3 px-4 rounded-lg font-medium text-center block hover:bg-gray-300 dark:hover:bg-zinc-500 transition-colors">
+                    <a href="#" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-center block mt-auto">
                         Contact Sales
                     </a>
                 </div>
@@ -277,33 +277,4 @@
     <!-- Include Footer Component -->
     <x-layouts.public.footer />
 
-    <!-- Add custom styles -->
-    <style>
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom responsive utilities */
-        @media (max-width: 640px) {
-            .hero-spacing {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
-            }
-        }
-
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .hero-spacing {
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .hero-spacing {
-                padding-top: 4rem;
-                padding-bottom: 4rem;
-            }
-        }
-    </style>
 </x-layouts.public>
