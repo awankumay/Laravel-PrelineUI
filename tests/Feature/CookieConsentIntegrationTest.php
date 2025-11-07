@@ -45,12 +45,14 @@ it('can retrieve consent statistics', function () {
     CookieConsent::create([
         'consent_type' => 'accepted',
         'ip_address' => '127.0.0.1',
+        'hostname' => 'localhost',
         'expires_at' => now()->addYear(),
     ]);
 
     CookieConsent::create([
         'consent_type' => 'rejected',
         'ip_address' => '192.168.1.1',
+        'hostname' => 'example.com',
         'expires_at' => now()->addYear(),
     ]);
 
@@ -69,16 +71,14 @@ it('can retrieve consent statistics', function () {
 });
 
 it('can export consent data', function () {
-    $user = \App\Models\User::factory()->create();
-
     CookieConsent::create([
         'consent_type' => 'accepted',
         'ip_address' => '127.0.0.1',
+        'hostname' => 'localhost',
         'expires_at' => now()->addYear(),
-        'user_id' => $user->id,
     ]);
 
-    $response = $this->actingAs($user)->get('/api/cookie-consent/export');
+    $response = $this->get('/api/cookie-consent/export');
 
     $response->assertSuccessful()
         ->assertJsonStructure([
@@ -86,4 +86,64 @@ it('can export consent data', function () {
             'data',
             'count',
         ]);
+});
+
+it('stores hostname when recording consent', function () {
+    $response = $this->postJson('/api/cookie-consent', [
+        'consent_type' => 'accepted',
+    ], [
+        'Host' => 'example.com'
+    ]);
+
+    $response->assertSuccessful();
+
+    $this->assertDatabaseHas('cookie_consents', [
+        'consent_type' => 'accepted',
+        'hostname' => 'example.com',
+    ]);
+});
+
+it('can find consent by ip and hostname', function () {
+    $consent = CookieConsent::create([
+        'consent_type' => 'accepted',
+        'ip_address' => '192.168.1.1',
+        'hostname' => 'example.com',
+        'expires_at' => now()->addYear(),
+    ]);
+
+    $found = CookieConsent::byIpAndHostname('192.168.1.1', 'example.com')->first();
+
+    expect($found->id)->toBe($consent->id);
+});
+
+it('can get hostname statistics', function () {
+    CookieConsent::create([
+        'consent_type' => 'accepted',
+        'ip_address' => '127.0.0.1',
+        'hostname' => 'localhost',
+        'expires_at' => now()->addYear(),
+    ]);
+
+    CookieConsent::create([
+        'consent_type' => 'rejected',
+        'ip_address' => '192.168.1.1',
+        'hostname' => 'localhost',
+        'expires_at' => now()->addYear(),
+    ]);
+
+    CookieConsent::create([
+        'consent_type' => 'accepted',
+        'ip_address' => '10.0.0.1',
+        'hostname' => 'example.com',
+        'expires_at' => now()->addYear(),
+    ]);
+
+    $service = app(\App\Services\CookieConsentService::class);
+    $stats = $service->getHostnameStatistics();
+
+    expect($stats)->toHaveCount(2);
+    expect($stats[0]['hostname'])->toBe('localhost');
+    expect($stats[0]['total'])->toBe(2);
+    expect($stats[0]['accepted'])->toBe(1);
+    expect($stats[0]['rejected'])->toBe(1);
 });

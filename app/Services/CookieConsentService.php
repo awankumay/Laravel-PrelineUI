@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\CookieConsent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CookieConsentService
 {
@@ -16,26 +15,22 @@ class CookieConsentService
         return CookieConsent::create([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
-            'user_id' => Auth::id(),
+            'hostname' => $request->getHost(),
             'consent_type' => $consentType,
             'consent_details' => $details,
-            'session_id' => $request->hasSession() ? $request->session()->getId() : null,
             'expires_at' => now()->addDays((int) config('cookie-consent.cookie_lifetime', 365)),
         ]);
     }
 
     /**
-     * Get latest consent for current user/IP
+     * Get latest consent for current IP address and hostname
      */
     public function getLatestConsent(Request $request): ?CookieConsent
     {
-        $query = CookieConsent::active()->latest();
-
-        if (Auth::check()) {
-            return $query->byUser(Auth::id())->first();
-        }
-
-        return $query->byIp($request->ip())->first();
+        return CookieConsent::active()
+            ->byIpAndHostname($request->ip(), $request->getHost())
+            ->latest()
+            ->first();
     }
 
     /**
@@ -74,6 +69,11 @@ class CookieConsentService
             $query->where('created_at', '<=', $filters['to']);
         }
 
+        // Apply hostname filter if provided
+        if (isset($filters['hostname'])) {
+            $query->where('hostname', $filters['hostname']);
+        }
+
         $total = $query->count();
         $accepted = $query->clone()->accepted()->count();
         $rejected = $query->clone()->rejected()->count();
@@ -96,11 +96,11 @@ class CookieConsentService
     }
 
     /**
-     * Export consent data for GDPR requests
+     * Export consent data for compliance requests by IP address
      */
-    public function exportUserConsents(int $userId): array
+    public function exportConsentsByIp(string $ipAddress): array
     {
-        return CookieConsent::byUser($userId)
+        return CookieConsent::byIp($ipAddress)
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($consent) {
@@ -108,8 +108,35 @@ class CookieConsentService
                     'date' => $consent->created_at->format('Y-m-d H:i:s'),
                     'consent_type' => $consent->consent_type,
                     'details' => $consent->consent_details,
-                    'ip_address' => $consent->ip_address,
+                    'hostname' => $consent->hostname,
                     'expires_at' => $consent->expires_at->format('Y-m-d H:i:s'),
+                ];
+            })
+            ->toArray();
+    }
+
+    /**
+     * Get unique hostnames with consent data
+     */
+    public function getHostnameStatistics(): array
+    {
+        return CookieConsent::selectRaw('
+                hostname,
+                COUNT(*) as total,
+                SUM(CASE WHEN consent_type = "accepted" THEN 1 ELSE 0 END) as accepted,
+                SUM(CASE WHEN consent_type = "rejected" THEN 1 ELSE 0 END) as rejected
+            ')
+            ->whereNotNull('hostname')
+            ->groupBy('hostname')
+            ->orderBy('total', 'desc')
+            ->get()
+            ->map(function ($stat) {
+                return [
+                    'hostname' => $stat->hostname,
+                    'total' => $stat->total,
+                    'accepted' => $stat->accepted,
+                    'rejected' => $stat->rejected,
+                    'acceptance_rate' => $stat->total > 0 ? round(($stat->accepted / $stat->total) * 100, 2) : 0,
                 ];
             })
             ->toArray();

@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CookieConsent extends Model
 {
     protected $fillable = [
         'ip_address',
         'user_agent',
-        'user_id',
+        'hostname',
         'consent_type',
         'consent_details',
-        'session_id',
         'expires_at',
     ];
 
@@ -21,14 +19,6 @@ class CookieConsent extends Model
         'consent_details' => 'array',
         'expires_at' => 'datetime',
     ];
-
-    /**
-     * Get the user that owns the consent
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 
     /**
      * Scope for active consents (not expired)
@@ -63,11 +53,25 @@ class CookieConsent extends Model
     }
 
     /**
-     * Get consent by user
+     * Get consent by hostname
      */
-    public function scopeByUser($query, int $userId)
+    public function scopeByHostname($query, string $hostname)
     {
-        return $query->where('user_id', $userId);
+        return $query->where('hostname', $hostname);
+    }
+
+    /**
+     * Get consent by IP and hostname combination
+     */
+    public function scopeByIpAndHostname($query, string $ip, ?string $hostname = null)
+    {
+        $query = $query->where('ip_address', $ip);
+
+        if ($hostname) {
+            $query->where('hostname', $hostname);
+        }
+
+        return $query;
     }
 
     /**

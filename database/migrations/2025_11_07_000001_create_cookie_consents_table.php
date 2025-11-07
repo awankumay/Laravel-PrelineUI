@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('ip_address')->index();
             $table->string('user_agent')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('hostname')->nullable()->index(); // Domain/hostname where consent was given
             $table->enum('consent_type', ['accepted', 'rejected'])->index();
             $table->json('consent_details')->nullable(); // For granular permissions
-            $table->string('session_id')->nullable();
             $table->timestamp('expires_at')->index();
             $table->timestamps();
 
             // Indexes for efficient queries
             $table->index(['ip_address', 'created_at']);
-            $table->index(['user_id', 'created_at']);
+            $table->index(['hostname', 'created_at']);
             $table->index(['consent_type', 'created_at']);
+            $table->index(['ip_address', 'hostname']); // Combined index for unique consent tracking
         });
     }
 

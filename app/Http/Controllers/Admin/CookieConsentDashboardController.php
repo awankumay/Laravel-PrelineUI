@@ -33,8 +33,7 @@ class CookieConsentDashboardController extends Controller
         ]);
 
         // Get recent consents
-        $recentConsents = \App\Models\CookieConsent::with('user')
-            ->whereBetween('created_at', [$from, $to])
+        $recentConsents = \App\Models\CookieConsent::whereBetween('created_at', [$from, $to])
             ->latest()
             ->limit(10)
             ->get();
@@ -51,10 +50,14 @@ class CookieConsentDashboardController extends Controller
             ->orderBy('date')
             ->get();
 
+        // Get hostname statistics
+        $hostnameStats = $this->consentService->getHostnameStatistics();
+
         return view('admin.cookie-consent.dashboard', compact(
             'stats',
             'recentConsents',
             'dailyStats',
+            'hostnameStats',
             'from',
             'to'
         ));
@@ -68,8 +71,7 @@ class CookieConsentDashboardController extends Controller
         $from = $request->get('from', now()->subMonth()->format('Y-m-d'));
         $to = $request->get('to', now()->format('Y-m-d'));
 
-        $consents = \App\Models\CookieConsent::with('user')
-            ->whereBetween('created_at', [$from, $to])
+        $consents = \App\Models\CookieConsent::whereBetween('created_at', [$from, $to])
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -87,9 +89,8 @@ class CookieConsentDashboardController extends Controller
             fputcsv($file, [
                 'ID',
                 'Date',
-                'User ID',
-                'User Email',
                 'IP Address',
+                'Hostname',
                 'Consent Type',
                 'Analytics',
                 'Marketing',
@@ -103,9 +104,8 @@ class CookieConsentDashboardController extends Controller
                 fputcsv($file, [
                     $consent->id,
                     $consent->created_at->format('Y-m-d H:i:s'),
-                    $consent->user_id,
-                    $consent->user->email ?? 'Guest',
                     $consent->ip_address,
+                    $consent->hostname ?? 'N/A',
                     $consent->consent_type,
                     $consent->consent_details['analytics'] ?? 'N/A',
                     $consent->consent_details['marketing'] ?? 'N/A',

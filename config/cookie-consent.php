@@ -51,15 +51,10 @@ return [
 
     /*
      * Enable database storage for consent records.
-     * When enabled, consent decisions are stored in database for analytics and GDPR compliance.
+     * When enabled, consent decisions are stored in database for analytics and compliance.
+     * Records store IP address, hostname, user agent, and consent details.
      */
     'enable_database_storage' => env('COOKIE_CONSENT_DATABASE_STORAGE', false),
-
-    /*
-     * Enable cross-device consent synchronization (requires database storage).
-     * When enabled, consent choices sync across user's devices when logged in.
-     */
-    'enable_cross_device_sync' => env('COOKIE_CONSENT_CROSS_DEVICE_SYNC', false),
 
     /*
      * Enable consent analytics and reporting (requires database storage).
