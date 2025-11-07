@@ -8,7 +8,10 @@
 <body class="text-primary">
     {{ $slot }}
 
-    <!-- Cookie Consent -->
+    {{-- Banner --}}
+    @include('partials.banner')
+
+    {{-- Cookie Consent Banner --}}
     @include('cookie-consent::index')
 </body>
 </html>
